@@ -24,17 +24,18 @@ class Module implements ConfigProviderInterface
 	    );
 	  }
 
+
     // public function getControllerConfig()
     // {
     //     return [
     //         'factories' => [
     //             Controller\NewsController::class => function($container) {
+                
     //                 return new Controller\NewsController(
-    //                     $container->get(Model\NewsTable::class)
+    //                     $container->get(Model\News::class)
     //                 );
     //             },
     //         ],
     //     ];
     // }
-
 }

@@ -1,7 +1,5 @@
 <?php
-/**
- * @link https://github.com/romka/zend-blog-example
- */
+
 
 namespace News\Entity;
 
@@ -16,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Roman Arkharov <arkharov@gmail.com>
  */
-class News
+class Test
 {
     /**
      * @var int
@@ -30,7 +28,7 @@ class News
      * @var string
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    protected $title;
+    protected $title2;
 
     /**
      * @var text

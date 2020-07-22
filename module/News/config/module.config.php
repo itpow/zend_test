@@ -3,26 +3,30 @@
 namespace News;
 
 use Zend\Router\Http\Segment;
-use Zend\ServiceManager\Factory\InvokableFactory;
+// use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'controllers' => [
         'factories' => [
-            Controller\NewsController::class => InvokableFactory::class,
+          // NewsController::class => IndexControllerFactory::class,
+            'News\Controller\NewsController' => 'News\Controller\IndexControllerFactory',
+            // 'yourModule\Controller\Index' => 'yourModule\Controller\Factory\IndexControllerFactory',
         ],
     ],
 
-    
+
 
     'doctrine' => array(
         'driver' => array(
             'News_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
+                // 'paths' => array(__DIR__ . '/../src/Model')
                 'paths' => array(__DIR__ . '/../src/News/Entity')
             ),
             'orm_default' => array(
                 'drivers' => array(
+                     // 'News\Entity' =>  'News_driver'
                      'News\Entity' =>  'News_driver'
                 ),
             ),
@@ -50,7 +54,7 @@ return [
 
     'view_manager' => [
         'template_path_stack' => [
-            'album' => __DIR__ . '/../view',
+            'news' => __DIR__ . '/../view',
         ],
     ],
 ];

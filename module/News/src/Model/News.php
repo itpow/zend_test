@@ -14,7 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="blogposts")
  *
- * @author Roman Arkharov <arkharov@gmail.com>
  */
 class News
 {
