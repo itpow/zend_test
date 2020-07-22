@@ -11,6 +11,21 @@
  * file.
  */
 
+use Doctrine\DBAL\Driver\PDOPgSql\Driver as PDOPgSql;
+
 return [
-    // ...
+    'doctrine' => [
+        'connection' => [
+            'orm_default' => [
+                'driverClass' => PDOPgSql::class,
+                'params' => [
+                    'host'     => '127.0.0.1',
+                    'port'	   =>  '5432',                  
+                    'user'     => 'postgres',
+                    'password' => 'root',
+                    'dbname'   => 'zf2_stud_news',
+                ]
+            ],            
+        ],        
+    ],
 ];

@@ -1,0 +1,30 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'My news';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('news', ['action' => 'add']) ?>">Add new album</a>
+</p>
+
+<!-- <table class="table">
+<tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>&nbsp;</th>
+</tr> -->
+
+<!-- <?php foreach ($news as $new) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($new->title) ?></td>
+        <td><?= $this->escapeHtml($new->artist) ?></td>
+        <td>
+            <a href="<?= $this->url('news', ['action' => 'edit', 'id' => $new->id]) ?>">Edit</a>
+            <a href="<?= $this->url('news', ['action' => 'delete', 'id' => $new->id]) ?>">Delete</a>
+        </td>
+    </tr>
+<?php endforeach; ?> -->
+
+</table>

@@ -12,7 +12,11 @@
  */
 return [
     'Zend\Router',
+    'Zend\ServiceManager\Di',
     'Zend\Validator',
+    'DoctrineModule',
+    'DoctrineORMModule',
+    'ZendDeveloperTools',
     'Application',
     'News'
 ];
