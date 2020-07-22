@@ -18,14 +18,26 @@ class Test
     /**
      * @var int
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
+     * @var datetime
+     * @ORM\Column(type="datetime")
+     */
+    protected $time_create;
+
+    /**
+     * @var datetime
+     * @ORM\Column(type="datetime")
+     */
+    protected $time_update;
+
+    /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string")
      */
     protected $title;
 
@@ -33,26 +45,19 @@ class Test
      * @var text
      * @ORM\Column(type="text")
      */
-    protected $text;
+    protected $preview;
 
     /**
-     * @var int
-     * @ORM\Column(type="integer")
+     * @var text
+     * @ORM\Column(type="text")
      */
-    protected $userId;
+    protected $body_text;
 
     /**
-     * @var int
-     * @ORM\Column(type="integer")
+     * @var boolean
+     * @ORM\Column(type="boolean")
      */
-    protected $created;
-
-
-    /**
-     * @var int
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $state;
+    protected $publish;
 
     /**
      * Get id.
@@ -103,9 +108,9 @@ class Test
      *
      * @return string
      */
-    public function getText()
+    public function getBodyText()
     {
-        return $this->text;
+        return $this->body_text;
     }
 
     /**
@@ -115,32 +120,12 @@ class Test
      *
      * @return void
      */
-    public function setText($text)
+    public function setBodyText($text)
     {
-        $this->text = $text;
+        $this->body_text = $text;
     }
 
-    /**
-     * Get userId.
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 
-    /**
-     * Set userId.
-     *
-     * @param int $userId
-     *
-     * @return void
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
 
     /**
      * Get created.
