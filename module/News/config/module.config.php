@@ -14,15 +14,13 @@ return [
         ],
     ],
 
-
-
     'doctrine' => array(
         'driver' => array(
             'News_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 // 'paths' => array(__DIR__ . '/../src/Model')
-                'paths' => array(__DIR__ . '/../src/News/Entity')
+                'paths' => array(__DIR__ . '/../src/Entity')
             ),
             'orm_default' => array(
                 'drivers' => array(

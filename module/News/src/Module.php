@@ -13,16 +13,16 @@ class Module implements ConfigProviderInterface
 
     
 
-    public function getAutoloaderConfig()
-	  {
-	    return array(
-	      'Zend\Loader\StandardAutoloader' => array(
-	        'namespaces' => array(
-	          __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-	        ),
-	      ),
-	    );
-	  }
+ //    public function getAutoloaderConfig()
+	// {
+	//     return array(
+	//       'Zend\Loader\StandardAutoloader' => array(
+	//         'namespaces' => array(
+	//           __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+	//         ),
+	//       ),
+	//     );
+	// }
 
 
     // public function getControllerConfig()
@@ -39,3 +39,4 @@ class Module implements ConfigProviderInterface
     //     ];
     // }
 }
+

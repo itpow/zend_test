@@ -3,7 +3,7 @@ namespace News\Controller;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use News\Controller\NewsController;
+// use News\Controller\NewsController;
 
 class IndexControllerFactory implements FactoryInterface
 {

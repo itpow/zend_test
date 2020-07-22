@@ -2,12 +2,12 @@
 
 namespace News\Controller;
 
-// use News\Entity\Test;
-// use News\Model\News;
+
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\ServiceManager\ServiceManager;
 use Doctrine\ORM\EntityManager;
+
 
 class NewsController extends AbstractActionController
 {
@@ -32,20 +32,18 @@ class NewsController extends AbstractActionController
         // return new ViewModel();
         
       
-        $data = $em->getRepository('Entity\News')->findAll();
-
-        var_dump($data);
+       
         
 
-        // foreach($data as $key=>$row)
-        // {
-        //     echo $row->getAlbum()->getArtist().' :: '.$row->getTrackTitle();
-        //     echo '<br />';
-        // }
+        foreach($data as $key=>$row)
+        {
+            echo $row->getAlbum()->getArtist().' :: '.$row->getTrackTitle();
+            echo '<br />';
+        }
 
-        // return new ViewModel([
-        //         'news' => $this->table->fetchAll(),
-        // ]);
+        return new ViewModel([
+                'news' => $this->table->fetchAll(),
+        ]);
     }
 
     public function addAction()
@@ -53,13 +51,11 @@ class NewsController extends AbstractActionController
         echo 2;
     }
 
-    public function viewAction(){
+    public function viewAction(){      
 
-        
-        
-        $repo = $this->em->getRepository('News\Entity\Test');
-        var_dump($repo);
-        die();
+     $data = $this->em->getRepository('\News\Entity\Test')->findAll();
+
+        var_dump($data); 
         
         // $id = (int) $this->params()->fromRoute('id', 0);
 
@@ -73,7 +69,7 @@ class NewsController extends AbstractActionController
         
 
         // $post = $objectManager
-        //     ->getRepository('\MyBlog\Entity\News')
+        //     ->getRepository('\News\Entity\Test')
         //     ->findOneBy(array('id' => $id));
 
         // if (!$post) {

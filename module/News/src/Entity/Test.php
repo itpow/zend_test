@@ -1,16 +1,15 @@
 <?php
 
-
 namespace News\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * An example of how to implement a BlogPost entity.
+ * An example of how to implement a Test entity.
  *
  * @ORM\Entity
- * @ORM\Table(name="blogposts")
+ * @ORM\Table(name="news")
  *
  * @author Roman Arkharov <arkharov@gmail.com>
  */
@@ -28,7 +27,7 @@ class Test
      * @var string
      * @ORM\Column(type="string", length=255, nullable=false)
      */
-    protected $title2;
+    protected $title;
 
     /**
      * @var text
