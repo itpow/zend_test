@@ -55,7 +55,7 @@ class NewsController extends AbstractActionController
 
     public function viewAction(){
 
-
+        
         
         $repo = $this->em->getRepository('News\Entity\Test');
         var_dump($repo);
