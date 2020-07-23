@@ -37,7 +37,7 @@ class NewsController extends AbstractActionController
     public function addAction()
     {   
         $form = new \News\Form\NewsForm();
-        $form->get('submit')->setValue('Add');
+        $form->get('submit')->setValue('Добавить');
 
         $request = $this->getRequest();
 
@@ -45,7 +45,6 @@ class NewsController extends AbstractActionController
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                // $objectManager = $this->em->getRepository('\News\Entity\News');
 
                 $news = new \News\Entity\News();
 
@@ -59,15 +58,10 @@ class NewsController extends AbstractActionController
                 $this->em->persist($news);
                 $this->em->flush();
 
-                // $message = 'Blogpost succesfully saved!';
-                // $this->flashMessenger()->addMessage($message);
-
-                // Redirect to list of blogposts
-                return $this->redirect()->toRoute('news');
+                return $this->redirect()->toRoute('news', array('action' => 'list'));
             }
             else {
-                $message = 'Error while saving blogpost';
-                $this->flashMessenger()->addErrorMessage($message);
+                return $this->redirect()->toRoute('news', array('action' => 'list'));
             }
         }
 
@@ -79,8 +73,7 @@ class NewsController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
 
         if (!$id) {
-            $this->flashMessenger()->addErrorMessage('Blogpost id doesn\'t set');
-            return $this->redirect()->toRoute('news');
+            return $this->redirect()->toRoute('news', array('action' => 'list'));
         }
         
 
@@ -89,8 +82,7 @@ class NewsController extends AbstractActionController
 
 
         if (!$post) {
-            $this->flashMessenger()->addErrorMessage(sprintf('Blogpost with id %s doesn\'t exists', $id));
-            return $this->redirect()->toRoute('news');
+            return $this->redirect()->toRoute('news', array('action' => 'list'));
         }
 
         $view = new ViewModel(array(
@@ -103,31 +95,26 @@ class NewsController extends AbstractActionController
 
     public function editAction()
     {
-        // Create form.
         $form = new \News\Form\NewsForm();
-        $form->get('submit')->setValue('Save');
+        $form->get('submit')->setValue('Сохранить');
 
         $request = $this->getRequest();
         if (!$request->isPost()) {
-            // Check if id and blogpost exists.
+            
             $id = (int) $this->params()->fromRoute('id', 0);
-            if (!$id) {
-                // $this->flashMessenger()->addErrorMessage('Blogpost id doesn\'t set');
-                return $this->redirect()->toRoute('news');
-            }
 
-            // $objectManager = $this->em->getRepository('\News\Entity\News');
+            if (!$id) {
+                return $this->redirect()->toRoute('news', array('action' => 'list'));
+            }
 
             $post = $this->em->getRepository('\News\Entity\News')
                 ->findOneBy(array('id' => $id));
 
             if (!$post) {
-                // $this->flashMessenger()->addErrorMessage(sprintf('Blogpost with id %s doesn\'t exists', $id));
-                return $this->redirect()->toRoute('news');
+                return $this->redirect()->toRoute('news', array('action' => 'list'));
             }
 
 
-            // Fill form data.
             $form->bind($post);
             return array('form' => $form);
         }
@@ -159,16 +146,10 @@ class NewsController extends AbstractActionController
                 $this->em->persist($news);
                 $this->em->flush();
 
-                // $message = 'Blogpost succesfully saved!';
-                // $this->flashMessenger()->addMessage($message);
-
-                // Redirect to list of blogposts
                 return $this->redirect()->toRoute('news', array('action' => 'list'));
             }
             else {
                 return $this->redirect()->toRoute('news', array('action' => 'list'));
-                // $message = 'Error while saving blogpost';
-                // $this->flashMessenger()->addErrorMessage($message);
             }
         }
     }
@@ -178,8 +159,7 @@ class NewsController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
 
         if (!$id) {
-            $this->flashMessenger()->addErrorMessage('Blogpost id doesn\'t set');
-            return $this->redirect()->toRoute('news');
+            return $this->redirect()->toRoute('news', array('action' => 'list'));
         }
         
 
@@ -188,13 +168,12 @@ class NewsController extends AbstractActionController
 
 
         if (!$post) {
-            // $this->flashMessenger()->addErrorMessage(sprintf('Blogpost with id %s doesn\'t exists', $id));
-            return $this->redirect()->toRoute('news');
+           return $this->redirect()->toRoute('news', array('action' => 'list'));
         }
 
         $this->em->remove($post);
         $this->em->flush();
 
-        $this->redirect()->toRoute('news');
+        return $this->redirect()->toRoute('news', array('action' => 'list'));
     }
 }

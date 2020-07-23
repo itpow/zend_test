@@ -19,12 +19,10 @@ return [
             'News_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                // 'paths' => array(__DIR__ . '/../src/Model')
                 'paths' => array(__DIR__ . '/../src/Entity')
             ),
             'orm_default' => array(
                 'drivers' => array(
-                     // 'News\Entity' =>  'News_driver'
                      'News\Entity' =>  'News_driver'
                 ),
             ),

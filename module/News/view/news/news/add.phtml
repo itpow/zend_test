@@ -1,9 +1,7 @@
 <?php
 
-
 $title = 'Добавление новости';
 $this->headTitle($title);
-// print $this->showMessages();
 ?>
 
 <h1><?= $this->escapeHtml($title); ?></h1>
@@ -19,10 +17,14 @@ $form->prepare();
 <?= $this->form()->openTag($form); ?>
 
 <?= $this->formHidden($form->get('id')); ?>
-<br><br>
+<br>
 <?= $this->formRow($form->get('title')); ?>
+<br>
 <?= $this->formRow($form->get('preview')); ?>
+<br>
 <?= $this->formRow($form->get('body_text'));?>
+<br>
 <?= $this->formRow($form->get('publish'));?>
+<br>
 <?= $this->formSubmit($form->get('submit'));?>
 <?= $this->form()->closeTag();?>

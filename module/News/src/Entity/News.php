@@ -171,27 +171,6 @@ class News
         $this->time_create = $time;
     }
 
-    /**
-     * Get state.
-     *
-     * @return int
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * Set state.
-     *
-     * @param int $state
-     *
-     * @return void
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-    }
 
     /**
      * Helper function.

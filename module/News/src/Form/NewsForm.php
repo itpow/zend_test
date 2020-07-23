@@ -12,17 +12,13 @@ class NewsForm extends Form
         parent::__construct('news');
         $this->setAttribute('method', 'post');
         // $this->setInputFilter(new \News\Form\NewsInputFilter());
-        // $this->setAttribute('enctype', 'multipart/form-data');
+        $this->setAttribute('enctype', 'multipart/form-data');
         // $this->add(array(
         //     'name' => 'security',
         //     'type' => 'Zend\Form\Element\Csrf',
         // ));
         $this->add(array(
             'name' => 'id',
-            'type' => 'Hidden',
-        ));
-        $this->add(array(
-            'name' => 'created',
             'type' => 'Hidden',
         ));
         
@@ -60,7 +56,7 @@ class NewsForm extends Form
             'name' => 'submit',
             'type' => 'Submit',
             'attributes' => array(
-                'value' => 'Save',
+                'value' => 'Сохранить',
                 'id' => 'submitbutton',
             ),
         ));
