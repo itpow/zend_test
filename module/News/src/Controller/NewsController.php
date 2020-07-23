@@ -7,21 +7,12 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\ServiceManager\ServiceManager;
 use Doctrine\ORM\EntityManager;
-
+use News\Form\NewsForm;
 
 class NewsController extends AbstractActionController
 {
 
-     // Add this property:
-    private $table;
-
-    // Add this constructor:
-    // public function __construct(News $table)
-    // {
-    //     $this->table = $table;
-    // }
-
-   protected $em;
+    protected $em;
 
     public function __construct(EntityManager $em) {
         $this->em = $em;
@@ -29,59 +20,81 @@ class NewsController extends AbstractActionController
 
     public function indexAction()
     {
-        // return new ViewModel();
-        
-      
-       
-        
+        return new ViewModel();
+    }
 
-        foreach($data as $key=>$row)
-        {
-            echo $row->getAlbum()->getArtist().' :: '.$row->getTrackTitle();
-            echo '<br />';
-        }
+    public function listAction()
+    {
+        $news = $this->em->getRepository('\News\Entity\News')->findBy(array(), array('time_create' => 'DESC'));
 
-        return new ViewModel([
-                'news' => $this->table->fetchAll(),
-        ]);
+        $view = new ViewModel(array(
+            'news' => $news,
+        ));
+
+        return $view;
     }
 
     public function addAction()
     {   
-        echo 2;
+        $form = new \News\Form\NewsForm();
+        $form->get('submit')->setValue('Add');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+                $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+                $blogpost = new \MyBlog\Entity\BlogPost();
+
+                $blogpost->exchangeArray($form->getData());
+
+                $blogpost->setCreated(time());
+                $blogpost->setUserId(0);
+
+                $objectManager->persist($blogpost);
+                $objectManager->flush();
+
+                $message = 'Blogpost succesfully saved!';
+                $this->flashMessenger()->addMessage($message);
+
+                // Redirect to list of blogposts
+                return $this->redirect()->toRoute('blog');
+            }
+            else {
+                $message = 'Error while saving blogpost';
+                $this->flashMessenger()->addErrorMessage($message);
+            }
+        }
+
+        return array('form' => $form);
     }
 
-    public function viewAction(){      
-
-     $data = $this->em->getRepository('\News\Entity\Test')->findAll();
-
-        var_dump($data); 
+    public function detailAction(){      
         
-        // $id = (int) $this->params()->fromRoute('id', 0);
+        $id = (int) $this->params()->fromRoute('id', 0);
 
-        // if (!$id) {
-        //     $this->flashMessenger()->addErrorMessage('Blogpost id doesn\'t set');
-        //     return $this->redirect()->toRoute('news');
-        // }
-
-
-        // $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        if (!$id) {
+            $this->flashMessenger()->addErrorMessage('Blogpost id doesn\'t set');
+            return $this->redirect()->toRoute('news');
+        }
         
 
-        // $post = $objectManager
-        //     ->getRepository('\News\Entity\Test')
-        //     ->findOneBy(array('id' => $id));
+        $post = $this->em->getRepository('\News\Entity\News')
+            ->findOneBy(array('id' => $id));
 
-        // if (!$post) {
-        //     $this->flashMessenger()->addErrorMessage(sprintf('Blogpost with id %s doesn\'t exists', $id));
-        //     return $this->redirect()->toRoute('blog');
-        // }
 
-        // $view = new ViewModel(array(
-        //     'post' => $post->getArrayCopy(),
-        // ));
+        if (!$post) {
+            $this->flashMessenger()->addErrorMessage(sprintf('Blogpost with id %s doesn\'t exists', $id));
+            return $this->redirect()->toRoute('news');
+        }
 
-        // return $view;
+        $view = new ViewModel(array(
+            'news' => $post->getArrayCopy(),
+        ));
+
+        return $view;
 
     }
 
@@ -92,6 +105,26 @@ class NewsController extends AbstractActionController
 
     public function deleteAction()
     {
-        echo 4;
+        $id = (int) $this->params()->fromRoute('id', 0);
+
+        if (!$id) {
+            $this->flashMessenger()->addErrorMessage('Blogpost id doesn\'t set');
+            return $this->redirect()->toRoute('news');
+        }
+        
+
+        $post = $this->em->getRepository('\News\Entity\News')
+            ->findOneBy(array('id' => $id));
+
+
+        if (!$post) {
+            $this->flashMessenger()->addErrorMessage(sprintf('Blogpost with id %s doesn\'t exists', $id));
+            return $this->redirect()->toRoute('news');
+        }
+
+        $this->em->remove($post);
+        $this->em->flush();
+
+        $this->redirect()->toRoute('news/list');
     }
 }

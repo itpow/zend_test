@@ -1,0 +1,31 @@
+<?php
+
+$title = 'Анонсы новостей';
+$this->headTitle($title);
+
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+
+<table class="table">
+<tr>
+    <th>Заголовок</th>
+    <th>Анонс</th>
+    <th>Дата создания</th>
+    <th>Действие</th>
+</tr>
+
+<?php foreach ($news as $new) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($new->title) ?></td>
+        <td><?= $this->escapeHtml($new->preview) ?></td>
+        <td><?= $this->escapeHtml($new->time_create->format('Y-m-d H:i:s')) ?></td>
+        <td>
+            <a href="<?= $this->url('news', ['action' => 'detail', 'id' => $new->id]) ?>">Просморт</a>
+            <a href="<?= $this->url('news', ['action' => 'edit', 'id' => $new->id]) ?>">Редактирование</a>
+            <a href="<?= $this->url('news', ['action' => 'delete', 'id' => $new->id]) ?>">Удаление</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+</table>

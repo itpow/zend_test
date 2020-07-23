@@ -1,0 +1,21 @@
+<?php
+    $title = 'Новость ID = ' . $news['id'];
+    $this->headTitle($title);
+?>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+
+<p>ID : <?= $news['id'] ?></p>
+
+<p>Название новости : <?= $news['title'] ?></p>
+
+<p>Анонс : <?= $news['preview'] ?></p>
+
+<p>Дата создания : <?= $news['time_create']->format('Y-m-d H:i:s') ?></p>
+
+<p>Дата обновления : <?= $news['time_update']->format('Y-m-d H:i:s') ?></p>
+
+<p>Текст : <?= $news['body_text'] ?></p>
+
+<p>Публикация : <?php if($news['publish'] == true) echo 'Опубликовано!'; else echo 'Не опубликовано!' ?></p>

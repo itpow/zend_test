@@ -11,9 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="news")
  *
- * @author Roman Arkharov <arkharov@gmail.com>
+ * 
  */
-class Test
+class News
 {
     /**
      * @var int
@@ -21,43 +21,43 @@ class Test
      * @ORM\Column(type="bigint")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    public $id;
 
     /**
      * @var datetime
      * @ORM\Column(type="datetime")
      */
-    protected $time_create;
+    public $time_create;
 
     /**
      * @var datetime
      * @ORM\Column(type="datetime")
      */
-    protected $time_update;
+    public $time_update;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
-    protected $title;
+    public $title;
 
     /**
      * @var text
      * @ORM\Column(type="text")
      */
-    protected $preview;
+    public $preview;
 
     /**
      * @var text
      * @ORM\Column(type="text")
      */
-    protected $body_text;
+    public $body_text;
 
     /**
-     * @var boolean
+     * 
      * @ORM\Column(type="boolean")
      */
-    protected $publish;
+    public $publish;
 
     /**
      * Get id.

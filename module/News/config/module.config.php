@@ -45,6 +45,7 @@ return [
                         'controller' => Controller\NewsController::class,
                         'action'     => 'index',
                     ],
+
                 ],
             ],
         ],
@@ -56,3 +57,4 @@ return [
         ],
     ],
 ];
+
