@@ -81,7 +81,7 @@ class Form extends AbstractHelper
      * @return string
      */
     public function openTag(FormInterface $form = null)
-    {
+    {   
         $doctype    = $this->getDoctype();
         $attributes = [];
 

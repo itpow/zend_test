@@ -1,0 +1,31 @@
+<?php
+
+
+$title = 'Редактирование новости';
+$this->headTitle($title);
+// print $this->showMessages();
+?>
+
+<h1><?= $this->escapeHtml($title); ?></h1>
+
+<?php
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('news', array('action' => 'edit')));
+$form->prepare();
+
+?>
+
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get('id')); ?>
+<?= $this->formRow($form->get('title')); ?>
+<br>
+<?= $this->formRow($form->get('preview')); ?>
+<br>
+<?= $this->formRow($form->get('body_text'));?>
+<br>
+<?= $this->formRow($form->get('publish'));?>
+<br>
+<?= $this->formSubmit($form->get('submit'));?>
+
+<?= $this->form()->closeTag();?>

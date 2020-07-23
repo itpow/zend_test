@@ -132,9 +132,9 @@ class News
      *
      * @return int
      */
-    public function getCreated()
+    public function getTimeUpdate()
     {
-        return $this->created;
+        return $this->time_update;
     }
 
     /**
@@ -144,9 +144,31 @@ class News
      *
      * @return void
      */
-    public function setCreated($created)
+    public function setTimeUpdate($time)
     {
-        $this->created = $created;
+        $this->time_update = $time;
+    }
+
+      /**
+     * Get created.
+     *
+     * @return int
+     */
+    public function getTimeCreate()
+    {
+        return $this->time_create;
+    }
+
+    /**
+     * Set created.
+     *
+     * @param int $created
+     *
+     * @return void
+     */
+    public function setTimeCreate($time)
+    {
+        $this->time_create = $time;
     }
 
     /**

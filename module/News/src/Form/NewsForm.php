@@ -9,7 +9,7 @@ class NewsForm extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('blogpost');
+        parent::__construct('news');
         $this->setAttribute('method', 'post');
         // $this->setInputFilter(new \News\Form\NewsInputFilter());
         // $this->setAttribute('enctype', 'multipart/form-data');
@@ -25,31 +25,35 @@ class NewsForm extends Form
             'name' => 'created',
             'type' => 'Hidden',
         ));
-        $this->add(array(
-            'name' => 'userId',
-            'type' => 'Hidden',
-        ));
+        
         $this->add(array(
             'name' => 'title',
             'type' => 'Text',
             'options' => array(
                 'min' => 3,
                 'max' => 25,
-                'label' => 'Title',
+                'label' => 'Название новости',
             ),
         ));
         $this->add(array(
-            'name' => 'text',
+            'name' => 'preview',
             'type' => 'Textarea',
             'options' => array(
-                'label' => 'Text',
+                'label' => 'Аннонс новости',
             ),
         ));
         $this->add(array(
-            'name' => 'state',
+            'name' => 'body_text',
+            'type' => 'Textarea',
+            'options' => array(
+                'label' => 'Текст новости',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'publish',
             'type' => 'Checkbox',
             'options' => array(
-                'label' => 'published',
+                'label' => 'Публикация',
             ),
         ));
         $this->add(array(

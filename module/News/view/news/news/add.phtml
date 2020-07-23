@@ -1,37 +1,28 @@
 <?php
-use Zend\I18n\View\Helper\AbstractTranslatorHelper;
-$class = new AbstractTranslatorHelper();
-// $formHelper     = new Zend\Form\View\Helper\Form();
-// var_dump($formHelper);
-// die();
-// $labelHelper    = new Zend\Form\View\Helper\FormLabel();
-// $elementHelper  = new Zend\Form\View\Helper\FormElement();
-// $inputHelper    = new Zend\Form\View\Helper\FormInput();
-// $textareaHelper = new Zend\Form\View\Helper\FormTextarea();
-// $errorHelper    = new Zend\Form\View\Helper\FormElementErrors();
 
-// use Zend\Form\View\Helper\Form;
-// use Zend\Form\View\Helper\FormLabel;
-// use Zend\Form\View\Helper\FormElement;
-// use Zend\Form\View\Helper\FormInput;
-// use Zend\Form\View\Helper\FormTextarea;
-// use Zend\Form\View\Helper\FormElementErrors;
 
-$title = 'Add new blogpost';
+$title = 'Добавление новости';
 $this->headTitle($title);
 // print $this->showMessages();
 ?>
-    <h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<h1><?= $this->escapeHtml($title); ?></h1>
 
 <?php
+
 $form = $this->form;
 $form->setAttribute('action', $this->url('news', array('action' => 'add')));
 $form->prepare();
 
-echo $this->form()->openTag($form);
-// echo $this->formHidden($form->get('id'));
-// echo $this->formRow($form->get('title'));
-// echo $this->formRow($form->get('text'));
-// echo $this->formRow($form->get('state'));
-// echo $this->formSubmit($form->get('submit'));
-// echo $this->form()->closeTag();
+?>
+
+<?= $this->form()->openTag($form); ?>
+
+<?= $this->formHidden($form->get('id')); ?>
+<br><br>
+<?= $this->formRow($form->get('title')); ?>
+<?= $this->formRow($form->get('preview')); ?>
+<?= $this->formRow($form->get('body_text'));?>
+<?= $this->formRow($form->get('publish'));?>
+<?= $this->formSubmit($form->get('submit'));?>
+<?= $this->form()->closeTag();?>

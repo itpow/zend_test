@@ -32,6 +32,7 @@ class ComposerStaticInitf59fcdc1d12d9c876561be0f45929ddd
             'Zend\\Loader\\' => 12,
             'Zend\\Json\\' => 10,
             'Zend\\InputFilter\\' => 17,
+            'Zend\\I18n\\' => 10,
             'Zend\\Hydrator\\' => 14,
             'Zend\\Http\\' => 10,
             'Zend\\Form\\' => 10,
@@ -40,6 +41,7 @@ class ComposerStaticInitf59fcdc1d12d9c876561be0f45929ddd
             'Zend\\Escaper\\' => 13,
             'Zend\\Config\\' => 12,
             'Zend\\ComponentInstaller\\' => 24,
+            'Zend\\Code\\' => 10,
             'Zend\\Cache\\' => 11,
             'Zend\\Authentication\\' => 20,
             'ZendDeveloperTools\\' => 19,
@@ -139,6 +141,10 @@ class ComposerStaticInitf59fcdc1d12d9c876561be0f45929ddd
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-inputfilter/src',
         ),
+        'Zend\\I18n\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-i18n/src',
+        ),
         'Zend\\Hydrator\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-hydrator/src',
@@ -170,6 +176,10 @@ class ComposerStaticInitf59fcdc1d12d9c876561be0f45929ddd
         'Zend\\ComponentInstaller\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-component-installer/src',
+        ),
+        'Zend\\Code\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
         ),
         'Zend\\Cache\\' => 
         array (
